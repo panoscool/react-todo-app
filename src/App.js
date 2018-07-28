@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Todo from './components/todo';
 import './App.css';
+import Header from './components/header';
+import Footer from './components/footer';
 
 class App extends Component {
   constructor() {
@@ -17,6 +19,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if(!this.state.text.length) { return }
     let notesArray = this.state.notes
     notesArray.push(this.state.text)
     this.setState({
@@ -38,16 +41,20 @@ class App extends Component {
     });
     return (
       <div className="App">
-        {notes}
+        <div className="notes-wrapper">
+        <Header />
         <form onSubmit={this.handleSubmit}>
           <input 
             onChange={this.handleChange}
-            value={this.state.value}
+            value={this.state.text}
             placeholder="Add your note here"
             type="text"
           />
-          <button>Add #{this.state.notes.length +1}</button>
+          <button className="btn btn-submit">Submit</button>
         </form>
+        {notes}
+        <Footer notesLength={this.state.notes.length} />
+        </div>
       </div>
     );
   }
