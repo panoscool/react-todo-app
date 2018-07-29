@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import Form from './components/form';
 import Todo from './components/todo';
-import './App.css';
 import Header from './components/header';
 import Footer from './components/footer';
+import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       text: '',
-      notes: []
+      notes: [
+        {todo: "test", isCompleted: true},
+        {todo: "test2", isCompleted: false}
+      ]
     }
   }
 
@@ -20,38 +24,43 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if(!this.state.text.length) { return }
-    let notesArray = this.state.notes
-    notesArray.push(this.state.text)
+    const newTodo = {
+      todo: this.state.text,
+      isCompleted: false
+    }
+    const notes = this.state.notes
+    notes.push(newTodo)
     this.setState({
-      text: ''
+      text: '',
+      notes: notes
     })
   }
 
+  handleClick = (index) => {
+    const notes = this.state.notes
+    notes[index].isCompleted = !notes[index].isCompleted
+    this.setState({ notes })
+  }
+
   handleDelete = (index) => {
-    let notesArray = this.state.notes
-    notesArray.splice(index, 1)
-    this.setState({
-      notes: notesArray
-    })
+    const notes = this.state.notes
+    notes.splice(index, 1)
+    this.setState({ notes })
   }
 
   render() {
     let notes = this.state.notes.map((todo, index) => {
-      return <Todo key={index} note={todo} deleteTodo={this.handleDelete} />
+      return <Todo key={index} note={todo} deleteTodo={this.handleDelete} handleClick={this.handleClick}/>
     });
     return (
       <div className="App">
         <div className="notes-wrapper">
         <Header />
-        <form onSubmit={this.handleSubmit}>
-          <input 
-            onChange={this.handleChange}
-            value={this.state.text}
-            placeholder="Add your note here"
-            type="text"
-          />
-          <button className="btn btn-submit">Submit</button>
-        </form>
+        <Form 
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          text={this.state.text}
+        />
         {notes}
         <Footer notesLength={this.state.notes.length} />
         </div>

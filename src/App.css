@@ -23,8 +23,8 @@
 
 .notes-wrapper {
   margin: 20px auto 20px auto;
-  width: 500px;
-  min-height: 600px;
+  width: 600px;
+  min-height: 800px;
   border: 5px solid var(--main-color);
 }
 
@@ -41,13 +41,13 @@
   border-width: 2px;
   border-radius: 3px;
   border-style: solid;
+  background-color: transparent;
   padding: 8px;
 }
 
 .btn-submit {
   color: var(--main-color);
   border-color: var(--main-color);
-  background-color: transparent;
 }
 
 .btn-submit:hover {
@@ -57,14 +57,20 @@
 
 .btn-remove {
   /* top 0px right 20px bottom 10px left 15px */
-  margin: 0px 20px 10px 15px;
+  margin: 0px 20px 10px 10px;
   color: var(--secondary-color);
   border-color: var(--secondary-color);
-  background-color: transparent;
+  padding: 4px;
 }
 
 .btn-remove:hover {
   border-color: var(--secondary-text-color);
+}
+
+.btn-status {
+  float: right;
+  margin-right: 6px;
+  padding: 4px;
 }
 
 li {
@@ -72,7 +78,7 @@ li {
 }
 
 input {
-  width: 80%;
+  width: 85%;
   border: none;
   padding: 8px 2px;
   margin: 8px;
