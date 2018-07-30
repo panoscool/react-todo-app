@@ -11,8 +11,8 @@ class App extends Component {
     this.state = {
       text: '',
       notes: [
-        {todo: "test", isCompleted: true},
-        {todo: "test2", isCompleted: false}
+        {todo: "test", completed: true},
+        {todo: "test2", completed: false}
       ]
     }
   }
@@ -26,7 +26,7 @@ class App extends Component {
     if(!this.state.text.length) { return }
     const newTodo = {
       todo: this.state.text,
-      isCompleted: false
+      completed: false
     }
     const notes = this.state.notes
     notes.push(newTodo)
@@ -38,7 +38,7 @@ class App extends Component {
 
   handleClick = (index) => {
     const notes = this.state.notes
-    notes[index].isCompleted = !notes[index].isCompleted
+    notes[index].completed = true
     this.setState({ notes })
   }
 

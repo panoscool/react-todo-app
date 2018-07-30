@@ -60,7 +60,6 @@
   margin: 0px 20px 10px 10px;
   color: var(--secondary-color);
   border-color: var(--secondary-color);
-  padding: 4px;
 }
 
 .btn-remove:hover {
