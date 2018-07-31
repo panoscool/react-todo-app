@@ -38,9 +38,10 @@ class App extends Component {
 
   handleClick = (index) => {
     const notes = this.state.notes
-    notes[index].completed = true
+    notes[index].completed = !notes[index].completed
     this.setState({ notes })
   }
+  
 
   handleDelete = (index) => {
     const notes = this.state.notes
@@ -50,7 +51,7 @@ class App extends Component {
 
   render() {
     let notes = this.state.notes.map((todo, index) => {
-      return <Todo key={index} note={todo} deleteTodo={this.handleDelete} handleClick={this.handleClick}/>
+      return <Todo key={index} note={todo} index={index} deleteTodo={this.handleDelete} handleClick={this.handleClick}/>
     });
     return (
       <div className="App">
