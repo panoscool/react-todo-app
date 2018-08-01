@@ -11,8 +11,9 @@
 }
 
 .header {
-  color: var(--main-text-color);
+  color: white;
   font-family: var(--main-font-style);
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .footer {
@@ -22,10 +23,12 @@
 }
 
 .notes-wrapper {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
   margin: 20px auto 20px auto;
-  width: 600px;
-  min-height: 800px;
   border: 5px solid var(--main-color);
+  background-color: whitesmoke;
 }
 
 .todo-wrapper {
@@ -56,8 +59,8 @@
 }
 
 .btn-remove {
-  /* top 0px right 20px bottom 10px left 15px */
-  margin: 0px 20px 10px 10px;
+  /* top 10px right 20px bottom 5px left 15px */
+  margin: 10px 20px 5px 15px;
   color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
@@ -68,7 +71,7 @@
 
 .btn-status {
   float: right;
-  margin-right: 6px;
+  margin: 5px 15px 0px 0px;
   padding: 4px;
 }
 
@@ -76,8 +79,12 @@ li {
   list-style: none;
 }
 
+li:hover {
+  background-color: white;
+}
+
 input {
-  width: 85%;
+  width: 50%;
   border: none;
   padding: 8px 2px;
   margin: 8px;

@@ -4,8 +4,8 @@ const Footer = (props) => {
     return (
         <div className="footer">
             All {props.notesLength} &nbsp;
-            Completed 0 &nbsp;
-            Incompleted 0
+            Completed {props.completedCount} &nbsp;
+            Incompleted {props.incompletedCount}
         </div>
     );
 }
