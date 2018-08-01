@@ -55,6 +55,7 @@
 
 .btn-submit:hover {
   border-width: 3px;
+  color: var(--secondary-color);
   font-weight: bold;
 }
 
@@ -71,9 +72,15 @@
 
 .btn-status {
   float: right;
-  margin: 5px 15px 0px 0px;
+  /* tpp right bottom left */
+  margin: 10px 15px 0px 0px;
   padding: 4px;
 }
+
+.btn-status:hover {
+  color: var(--secondary-text-color);
+  box-shadow: 0 5px 15px whitesmoke;
+ }
 
 li {
   list-style: none;

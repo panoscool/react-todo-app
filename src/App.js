@@ -50,8 +50,9 @@ class App extends Component {
     let notes = this.state.notes.map((todo, index) => {
       return <Todo key={index} note={todo} index={index} deleteTodo={this.handleDelete} handleClick={this.handleClick}/>
     });
-    let completedCount = this.state.notes.filter(n => n.completed).length;
-    let incompletedCount = this.state.notes.filter(n => !n.completed).length;
+    const allNotes = this.state.notes.length
+    let completedNotes = this.state.notes.filter(n => n.completed).length;
+    let incompletedNotes = this.state.notes.filter(n => !n.completed).length;
     return (
       <div className="App">
         <div className="notes-wrapper">
@@ -63,9 +64,9 @@ class App extends Component {
         />
         {notes} 
         <Footer 
-          notesLength={this.state.notes.length} 
-          completedCount={completedCount} 
-          incompletedCount={incompletedCount} 
+          allNotes={allNotes} 
+          completedNotes={completedNotes} 
+          incompletedNotes={incompletedNotes} 
         />
         </div>
       </div>
