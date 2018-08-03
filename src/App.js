@@ -25,7 +25,7 @@ class App extends Component {
       todo: this.state.text,
       completed: false
     }
-    const newNotes = this.state.notes
+    const newNotes = Array.from(this.state.notes)
     newNotes.push(newTodo)
     this.setState({
       text: '',
@@ -34,16 +34,16 @@ class App extends Component {
   }
 
   handleClick = (index) => {
-    const newNotes = this.state.notes
+    const newNotes = Array.from(this.state.notes)
     newNotes[index].completed = !newNotes[index].completed
-    this.setState({ newNotes })
+    this.setState({ notes: newNotes })
   }
   
 
   handleDelete = (index) => {
-    const newNotes = this.state.notes
+    const newNotes = Array.from(this.state.notes)
     newNotes.splice(index, 1)
-    this.setState({ newNotes })
+    this.setState({ notes: newNotes })
   }
 
   render() {
