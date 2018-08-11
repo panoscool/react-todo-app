@@ -40,7 +40,7 @@ class App extends Component {
   }
   
 
-  handleDelete = (index) => {
+  deleteTodo = (index) => {
     const newNotes = Array.from(this.state.notes)
     newNotes.splice(index, 1)
     this.setState({ notes: newNotes })
@@ -48,11 +48,17 @@ class App extends Component {
 
   render() {
     let notes = this.state.notes.map((todo, index) => {
-      return <Todo key={index} note={todo} index={index} deleteTodo={this.handleDelete} handleClick={this.handleClick}/>
+      return (
+        <Todo 
+          key={index} 
+          note={todo} 
+          deleteTodo={() => this.deleteTodo(index)} 
+          handleClick={() => this.handleClick(index)}/>
+      );
     });
     const allNotes = this.state.notes.length
-    let completedNotes = this.state.notes.filter(n => n.completed).length;
-    let incompletedNotes = this.state.notes.filter(n => !n.completed).length;
+    let completedNotes = this.state.notes.filter(n => n.completed).length
+    let incompletedNotes = this.state.notes.filter(n => !n.completed).length
     return (
       <div className="App">
         <div className="notes-wrapper">
