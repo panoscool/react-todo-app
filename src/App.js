@@ -10,7 +10,8 @@ class App extends Component {
     super();
     this.state = {
       text: '',
-      notes: []
+      notes: [],
+      noteFilter: 'all'
     }
   }
 
@@ -46,19 +47,37 @@ class App extends Component {
     this.setState({ notes: newNotes })
   }
 
+  getFilteredNotes() {
+    switch (this.state.noteFilter) {
+      case 'completed':
+        return this.state.notes.filter(t => t.completed);
+      case 'incompleted':
+        return this.state.notes.filter(t => !t.completed);
+      case 'all':
+      default:
+        return this.state.notes;
+    }
+  }
+
+  allNotes = () => {
+    this.setState({
+      noteFilter: 'all'
+    })
+  }
+
+  completedNotes = () => {
+    this.setState({
+      noteFilter: 'completed'
+    })
+  }
+
+  incompletedNotes = () => {
+    this.setState({
+      noteFilter: 'incompleted'
+    })
+  }
+
   render() {
-    let notes = this.state.notes.map((todo, index) => {
-      return (
-        <Todo 
-          key={index} 
-          note={todo} 
-          deleteTodo={() => this.deleteTodo(index)} 
-          handleClick={() => this.handleClick(index)}/>
-      );
-    });
-    const allNotes = this.state.notes.length
-    let completedNotes = this.state.notes.filter(n => n.completed).length
-    let incompletedNotes = this.state.notes.filter(n => !n.completed).length
     return (
       <div className="App">
         <div className="notes-wrapper">
@@ -68,11 +87,20 @@ class App extends Component {
           handleChange={this.handleChange}
           text={this.state.text}
         />
-        {notes} 
+        {this.getFilteredNotes(this.state.noteFilter).map((todo, index) => {
+          return (
+            <Todo 
+              key={index} 
+              note={todo} 
+              deleteTodo={() => this.deleteTodo(index)} 
+              handleClick={() => this.handleClick(index)}/>
+          );
+        })}
         <Footer 
-          allNotes={allNotes} 
-          completedNotes={completedNotes} 
-          incompletedNotes={incompletedNotes} 
+          notes={this.state.notes}
+          allNotes={this.allNotes}
+          completedNotes={this.completedNotes}
+          incompletedNotes={this.incompletedNotes} 
         />
         </div>
       </div>
