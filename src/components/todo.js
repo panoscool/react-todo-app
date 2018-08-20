@@ -5,7 +5,7 @@ const Todo = (props) => {
         <div className="todo-wrapper">
             <li style={{ textDecoration: props.note.completed ? 'line-through' : 'none' }}>
                 <button className="btn btn-remove" onClick={props.deleteTodo}>
-                Remove
+                    Remove
                 </button>
                     {props.note.todo}
                 <button className="btn btn-status" onClick={props.handleClick}>

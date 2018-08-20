@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       text: '',
       notes: [],
-      noteFilter: 'all'
+      notesFilter: 'all'
     }
   }
 
@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   getFilteredNotes() {
-    switch (this.state.noteFilter) {
+    switch (this.state.notesFilter) {
       case 'completed':
         return this.state.notes.filter(t => t.completed);
       case 'incompleted':
@@ -61,33 +61,32 @@ class App extends Component {
 
   allNotes = () => {
     this.setState({
-      noteFilter: 'all'
+      notesFilter: 'all'
     })
   }
 
   completedNotes = () => {
     this.setState({
-      noteFilter: 'completed'
+      notesFilter: 'completed'
     })
   }
 
   incompletedNotes = () => {
     this.setState({
-      noteFilter: 'incompleted'
+      notesFilter: 'incompleted'
     })
   }
 
   render() {
     return (
       <div className="App">
-        <div className="notes-wrapper">
         <Header />
         <Form 
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           text={this.state.text}
         />
-        {this.getFilteredNotes(this.state.noteFilter).map((todo, index) => {
+        {this.getFilteredNotes(this.state.notesFilter).map((todo, index) => {
           return (
             <Todo 
               key={index} 
@@ -102,7 +101,6 @@ class App extends Component {
           completedNotes={this.completedNotes}
           incompletedNotes={this.incompletedNotes} 
         />
-        </div>
       </div>
     );
   }
