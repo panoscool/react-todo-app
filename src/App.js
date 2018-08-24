@@ -21,7 +21,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(!this.state.text.length) { return }
+    if(!this.state.text.trim()) { return }
     const newTodo = {
       todo: this.state.text,
       completed: false
